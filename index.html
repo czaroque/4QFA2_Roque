@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multiplication Table Generator</title>
+</head>
+<body>
+    <form>
+        <fieldset form="multtable">
+        <!--for label-->
+        <legend for="startNum">Enter two numbers between 2 and 10.</legend> <br>
+        <!--for the beginning value -->
+        <input type="number" id="startNum" name="startNum">
+        <label for="endNum">By</label>
+        <!--for the ending value-->
+        <input type="number" id="endNum" name="endNum"> <br> <br>
+        <!--submission button-->
+        <input type="button" onclick="checkNums()" value="Submit the values and wait for a multiplication table to appear!"> <br>
+        <br>
+        <!--to display the multiplication table-->
+        <div id="multTable"></div>
+        </fieldset>
+    </form>
+    <script>
+        var startNum, endNum; 
+        //function to check whether the values are really between 2 and 10
+        function checkNums(){
+            startNum = parseInt(document.getElementById("startNum").value);
+            endNum = parseInt(document.getElementById("endNum").value);
+
+            if (isNaN(startNum) || isNaN(endNum) || startNum < 2 || endNum < 2 || startNum > 10 || endNum > 10){
+                alert("Please enter numbers between 2 and 10 :(");
+                return;
+            }
+            else{
+                outputTable();
+            }
+        }
+        //function to display the multiplication table
+        function outputTable(){
+            var multtable = "<table border='1'>";
+            for (var x = 1; x <= startNum; x++){
+                multtable += "<tr>";
+                for ( var y = 1; y <= endNum; y++){
+                    multtable += "<td>" + (x * y) + "</td>";
+                }
+                multtable += "</tr>";
+            }
+            multtable += "</table>";
+            document.getElementById("multTable").innerHTML = multtable;
+        }
+    </script>
+</body>
+</html>
